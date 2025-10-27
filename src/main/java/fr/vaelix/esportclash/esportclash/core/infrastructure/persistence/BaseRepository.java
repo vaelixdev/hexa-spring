@@ -1,0 +1,11 @@
+package fr.vaelix.esportclash.esportclash.core.infrastructure.persistence;
+
+import fr.vaelix.esportclash.esportclash.core.domain.model.BaseEntity;
+
+import java.util.Optional;
+
+public interface BaseRepository<T extends BaseEntity> {
+    public Optional<T> findById(String id);
+    public void save(T entity);
+    public void delete(T entity);
+}
