@@ -1,5 +1,6 @@
 package fr.vaelix.esportclash.esportclash.auth;
 
+import fr.vaelix.esportclash.esportclash.auth.application.exception.EmailAddressUnavailableException;
 import fr.vaelix.esportclash.esportclash.auth.application.services.passwordhasher.BcryptPasswordHasher;
 import fr.vaelix.esportclash.esportclash.auth.application.services.passwordhasher.PasswordHasher;
 import fr.vaelix.esportclash.esportclash.auth.application.usecases.RegisterCommand;
@@ -10,7 +11,7 @@ import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class RegisterCommandHandlerTests {
+public class RegisterTests {
     private final InMemoryUserRepository userRepository = new InMemoryUserRepository();
     private final PasswordHasher passwordHasher = new BcryptPasswordHasher();
 
@@ -34,7 +35,7 @@ public class RegisterCommandHandlerTests {
         var actualUser = userRepository.findById(response.getId()).get();
 
         Assert.assertEquals(command.getEmailAddress(), actualUser.getEmailAddress());
-        Assert.assertTrue(passwordHasher.match(command.getPassword(), actualUser.getPassword()));
+        Assert.assertTrue(passwordHasher.match(command.getPassword(), actualUser.getPasswordHash()));
     }
 
     @Test
@@ -46,12 +47,17 @@ public class RegisterCommandHandlerTests {
         userRepository.save(existingUser);
         RegisterCommand command = new RegisterCommand(
                 existingUser.getEmailAddress(),
-                existingUser.getPassword());
+                existingUser.getPasswordHash());
 
         var commandHandler = createHandler();
         var exception = Assert.assertThrows(
-                IllegalArgumentException.class,
+                EmailAddressUnavailableException.class,
                 () -> commandHandler.handle(command)
+        );
+
+        Assert.assertEquals(
+                "Email address in already in use",
+                exception.getMessage()
         );
      }
 }

@@ -4,21 +4,21 @@ import fr.vaelix.esportclash.esportclash.core.domain.model.BaseEntity;
 
 public class User extends BaseEntity {
     private String emailAddress;
-    private String password;
+    private String passwordHash;
 
     public User() {}
 
     public User(String id, String emailAddress, String password) {
         super(id);
         this.emailAddress = emailAddress;
-        this.password = password;
+        this.passwordHash = password;
     }
 
     public String getEmailAddress() {
         return emailAddress;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswordHash() {
+        return passwordHash;
     }
 }
