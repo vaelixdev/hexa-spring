@@ -1,7 +1,9 @@
 package fr.vaelix.esportclash.esportclash.auth.infrastructure.spring;
 
 import fr.vaelix.esportclash.esportclash.auth.application.ports.UserRepository;
+import fr.vaelix.esportclash.esportclash.auth.application.services.jwtservice.JwtService;
 import fr.vaelix.esportclash.esportclash.auth.application.services.passwordhasher.PasswordHasher;
+import fr.vaelix.esportclash.esportclash.auth.application.usecases.LoginCommandHandler;
 import fr.vaelix.esportclash.esportclash.auth.application.usecases.RegisterCommandHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,5 +16,14 @@ public class AuthUseCasesConfiguration {
             PasswordHasher passwordHasher
     ) {
         return new RegisterCommandHandler(userRepository, passwordHasher);
+    }
+
+    @Bean
+    public LoginCommandHandler loginCommandHandler(
+            UserRepository userRepository,
+            JwtService jwtService,
+            PasswordHasher passwordHasher
+    ) {
+        return new LoginCommandHandler(userRepository, jwtService, passwordHasher);
     }
 }

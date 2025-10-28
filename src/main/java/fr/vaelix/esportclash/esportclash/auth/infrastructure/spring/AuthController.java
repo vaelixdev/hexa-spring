@@ -1,7 +1,9 @@
 package fr.vaelix.esportclash.esportclash.auth.infrastructure.spring;
 
 import an.awesome.pipelinr.Pipeline;
+import fr.vaelix.esportclash.esportclash.auth.application.usecases.LoginCommand;
 import fr.vaelix.esportclash.esportclash.auth.application.usecases.RegisterCommand;
+import fr.vaelix.esportclash.esportclash.auth.domain.viewmodel.LoggedInUserViewModel;
 import fr.vaelix.esportclash.esportclash.player.domain.viewmodel.IdResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -30,5 +32,15 @@ public class AuthController {
                 dto.getEmailAddress(),
                 dto.getPassword()
         )), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoggedInUserViewModel> register(
+            @Valid @RequestBody LoginDTO dto
+    ) {
+        return ResponseEntity.ok(pipeline.send(new LoginCommand(
+                dto.getEmailAddress(),
+                dto.getPassword()
+        )));
     }
 }
