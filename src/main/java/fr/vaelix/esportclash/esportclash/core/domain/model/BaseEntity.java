@@ -15,4 +15,10 @@ public abstract class BaseEntity {
     public void setId(String id) {
         this.id = id;
     }
+
+    public BaseEntity() {}
+
+    public BaseEntity(String id) {
+        this.id = id;
+    }
 }
