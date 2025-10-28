@@ -18,7 +18,7 @@ public class AuthServicesConfiguration {
     public JwtService jwtService() {
         return new ConcreteJwtService(
                 "supersecretdoesnotuseinreallifepleasechange",
-                60
+                3600
         );
     }
 }

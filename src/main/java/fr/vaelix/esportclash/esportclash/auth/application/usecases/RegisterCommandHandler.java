@@ -5,7 +5,6 @@ import fr.vaelix.esportclash.esportclash.auth.application.exception.EmailAddress
 import fr.vaelix.esportclash.esportclash.auth.application.ports.UserRepository;
 import fr.vaelix.esportclash.esportclash.auth.application.services.passwordhasher.PasswordHasher;
 import fr.vaelix.esportclash.esportclash.auth.domain.model.User;
-import fr.vaelix.esportclash.esportclash.core.domain.exceptions.BadRequestException;
 import fr.vaelix.esportclash.esportclash.player.domain.viewmodel.IdResponse;
 
 import java.util.UUID;

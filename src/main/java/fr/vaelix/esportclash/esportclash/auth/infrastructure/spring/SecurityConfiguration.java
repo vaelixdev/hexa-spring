@@ -18,7 +18,7 @@ public class SecurityConfiguration {
                 .addFilterBefore(new JwtAuthenticationFilter(jwtService),
                         UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(it ->
-                        it.requestMatchers("auth/**").permitAll()
+                        it.requestMatchers("/auth/**").permitAll()
                                 .anyRequest().authenticated())
                 .formLogin(it -> it.disable())
                 .httpBasic(it -> it.disable())

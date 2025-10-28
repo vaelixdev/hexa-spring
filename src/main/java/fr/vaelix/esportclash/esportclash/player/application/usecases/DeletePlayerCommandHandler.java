@@ -1,6 +1,7 @@
 package fr.vaelix.esportclash.esportclash.player.application.usecases;
 
 import an.awesome.pipelinr.Command;
+import fr.vaelix.esportclash.esportclash.auth.application.ports.AuthContext;
 import fr.vaelix.esportclash.esportclash.core.domain.exceptions.NotFoundException;
 import fr.vaelix.esportclash.esportclash.player.application.ports.PlayerRepository;
 
