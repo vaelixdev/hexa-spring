@@ -1,7 +1,7 @@
 package fr.vaelix.esportclash.esportclash.team.usecases;
 
 import fr.vaelix.esportclash.esportclash.core.domain.exceptions.NotFoundException;
-import fr.vaelix.esportclash.esportclash.team.application.infrastructure.persistence.ram.InMemoryTeamRepository;
+import fr.vaelix.esportclash.esportclash.team.infrastructure.persistence.ram.InMemoryTeamRepository;
 import fr.vaelix.esportclash.esportclash.team.application.usecases.DeleteTeamCommand;
 import fr.vaelix.esportclash.esportclash.team.application.usecases.DeleteTeamCommandHandler;
 import fr.vaelix.esportclash.esportclash.team.domain.model.Team;

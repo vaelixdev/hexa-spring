@@ -2,7 +2,7 @@ package fr.vaelix.esportclash.esportclash.team.e2e;
 
 import fr.vaelix.esportclash.esportclash.IntegrationTests;
 import fr.vaelix.esportclash.esportclash.player.domain.viewmodel.IdResponse;
-import fr.vaelix.esportclash.esportclash.team.application.infrastructure.spring.dto.CreateTeamDTO;
+import fr.vaelix.esportclash.esportclash.team.infrastructure.spring.dto.CreateTeamDTO;
 import fr.vaelix.esportclash.esportclash.team.application.ports.TeamRepository;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;

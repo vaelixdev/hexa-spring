@@ -1,4 +1,4 @@
-package fr.vaelix.esportclash.esportclash.team.application.infrastructure.persistence.ram;
+package fr.vaelix.esportclash.esportclash.team.infrastructure.persistence.ram;
 
 import fr.vaelix.esportclash.esportclash.core.infrastructure.persistence.ram.InMemoryBaseRepository;
 import fr.vaelix.esportclash.esportclash.team.application.ports.TeamRepository;

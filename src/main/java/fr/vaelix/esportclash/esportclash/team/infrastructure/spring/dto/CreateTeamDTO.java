@@ -1,4 +1,4 @@
-package fr.vaelix.esportclash.esportclash.team.application.infrastructure.spring.dto;
+package fr.vaelix.esportclash.esportclash.team.infrastructure.spring.dto;
 
 public class CreateTeamDTO {
     private String name;

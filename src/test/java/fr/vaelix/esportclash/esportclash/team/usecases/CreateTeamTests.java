@@ -1,6 +1,6 @@
 package fr.vaelix.esportclash.esportclash.team.usecases;
 
-import fr.vaelix.esportclash.esportclash.team.application.infrastructure.persistence.ram.InMemoryTeamRepository;
+import fr.vaelix.esportclash.esportclash.team.infrastructure.persistence.ram.InMemoryTeamRepository;
 import fr.vaelix.esportclash.esportclash.team.application.usecases.CreateTeamCommand;
 import fr.vaelix.esportclash.esportclash.team.application.usecases.CreateTeamCommandHandler;
 import org.junit.Assert;
