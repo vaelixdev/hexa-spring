@@ -7,7 +7,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class User extends BaseEntity {
+public class User extends BaseEntity<User> {
     @Column(name = "email_address")
     private String emailAddress;
 
@@ -28,5 +28,10 @@ public class User extends BaseEntity {
 
     public String getPasswordHash() {
         return passwordHash;
+    }
+
+    @Override
+    public User deepClone() {
+        return new User(this.id, this.emailAddress, this.passwordHash);
     }
 }

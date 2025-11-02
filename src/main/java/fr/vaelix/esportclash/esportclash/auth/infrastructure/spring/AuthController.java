@@ -28,7 +28,7 @@ public class AuthController {
     public ResponseEntity<IdResponse> register(
             @Valid @RequestBody RegisterDTO dto
     ) {
-        return new ResponseEntity(pipeline.send(new RegisterCommand(
+        return new ResponseEntity<>(pipeline.send(new RegisterCommand(
                 dto.getEmailAddress(),
                 dto.getPassword()
         )), HttpStatus.CREATED);
