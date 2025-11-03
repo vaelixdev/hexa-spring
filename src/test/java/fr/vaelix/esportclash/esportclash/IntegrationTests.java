@@ -3,6 +3,7 @@ package fr.vaelix.esportclash.esportclash;
 import fr.vaelix.esportclash.esportclash.auth.application.ports.UserRepository;
 import fr.vaelix.esportclash.esportclash.auth.application.services.jwtservice.JwtService;
 import fr.vaelix.esportclash.esportclash.auth.domain.model.User;
+import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -28,6 +29,14 @@ public class IntegrationTests {
 
     @Autowired
     protected JwtService jwtService;
+
+    @Autowired
+    protected EntityManager entityManager;
+
+    protected void clearDatabaseCache() {
+        entityManager.flush();
+        entityManager.clear();
+    }
 
     protected String createJwt() {
         var user = userRepository.findByEmailAddress("contact@example.fr").orElse(null);

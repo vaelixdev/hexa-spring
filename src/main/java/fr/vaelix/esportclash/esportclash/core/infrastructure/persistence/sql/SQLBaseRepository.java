@@ -6,9 +6,8 @@ import jakarta.persistence.EntityManager;
 
 import java.util.Optional;
 
-public abstract class SQLBaseRepository<T extends BaseEntity> implements BaseRepository<T> {
-
-    private EntityManager entityManager;
+public abstract class SQLBaseRepository<T extends BaseEntity<T>> implements BaseRepository<T> {
+    protected final EntityManager entityManager;
 
     public SQLBaseRepository(EntityManager entityManager) {
         this.entityManager = entityManager;

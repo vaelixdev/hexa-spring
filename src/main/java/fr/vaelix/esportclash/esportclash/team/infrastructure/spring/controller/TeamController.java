@@ -2,12 +2,10 @@ package fr.vaelix.esportclash.esportclash.team.infrastructure.spring.controller;
 
 import an.awesome.pipelinr.Pipeline;
 import fr.vaelix.esportclash.esportclash.player.domain.viewmodel.IdResponse;
-import fr.vaelix.esportclash.esportclash.team.application.usecases.AddPlayerToTeamCommand;
-import fr.vaelix.esportclash.esportclash.team.application.usecases.DeleteTeamCommand;
-import fr.vaelix.esportclash.esportclash.team.application.usecases.RemovePlayerFromTeamCommand;
+import fr.vaelix.esportclash.esportclash.team.application.usecases.*;
+import fr.vaelix.esportclash.esportclash.team.domain.viewmodel.TeamViewModel;
 import fr.vaelix.esportclash.esportclash.team.infrastructure.spring.dto.AddPlayerToTeamDTO;
 import fr.vaelix.esportclash.esportclash.team.infrastructure.spring.dto.CreateTeamDTO;
-import fr.vaelix.esportclash.esportclash.team.application.usecases.CreateTeamCommand;
 import fr.vaelix.esportclash.esportclash.team.infrastructure.spring.dto.RemovePlayerFromTeamDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +20,12 @@ public class TeamController {
 
     public TeamController(Pipeline pipeline) {
         this.pipeline = pipeline;
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<TeamViewModel> getTeamById(@PathVariable String id) {
+        var result = this.pipeline.send(new GetTeamByIdCommand(id));
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @PostMapping

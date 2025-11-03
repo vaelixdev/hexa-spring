@@ -1,20 +1,21 @@
 package fr.vaelix.esportclash.esportclash.team.infrastructure.spring.configuration;
 
 import fr.vaelix.esportclash.esportclash.player.application.ports.PlayerRepository;
-import fr.vaelix.esportclash.esportclash.team.application.usecases.AddPlayerToTeamCommandHandler;
-import fr.vaelix.esportclash.esportclash.team.application.usecases.DeleteTeamCommandHandler;
-import fr.vaelix.esportclash.esportclash.team.application.usecases.RemovePlayerFromTeamCommandHandler;
+import fr.vaelix.esportclash.esportclash.team.application.ports.TeamQueries;
+import fr.vaelix.esportclash.esportclash.team.application.usecases.*;
+import fr.vaelix.esportclash.esportclash.team.infrastructure.persistence.jpa.SQLTeamQueries;
+import fr.vaelix.esportclash.esportclash.team.infrastructure.persistence.jpa.SQLTeamRepository;
 import fr.vaelix.esportclash.esportclash.team.infrastructure.persistence.ram.InMemoryTeamRepository;
 import fr.vaelix.esportclash.esportclash.team.application.ports.TeamRepository;
-import fr.vaelix.esportclash.esportclash.team.application.usecases.CreateTeamCommandHandler;
+import jakarta.persistence.EntityManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class TeamConfiguration {
     @Bean
-    public TeamRepository teamRepository() {
-        return new InMemoryTeamRepository();
+    public TeamRepository teamRepository(EntityManager entityManager) {
+        return new SQLTeamRepository(entityManager);
     }
 
     @Bean
@@ -35,5 +36,15 @@ public class TeamConfiguration {
     @Bean
     public RemovePlayerFromTeamCommandHandler removePlayerFromTeamCommandHandler(TeamRepository teamRepository) {
         return new RemovePlayerFromTeamCommandHandler(teamRepository);
+    }
+
+    @Bean
+    public TeamQueries teamQueries(EntityManager entityManager) {
+        return new SQLTeamQueries(entityManager);
+    }
+
+    @Bean
+    public GetTeamByIdCommandHandler getTeamByIdCommandHandler(TeamQueries teamQueries) {
+        return new GetTeamByIdCommandHandler(teamQueries);
     }
 }
